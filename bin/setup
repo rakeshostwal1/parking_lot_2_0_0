@@ -6,3 +6,5 @@
 # After this is run, bin/parking_lot
 # should Just Work.
 npm install
+
+npm test
