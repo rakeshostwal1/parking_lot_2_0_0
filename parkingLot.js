@@ -95,10 +95,10 @@ class ParkingLot {
 
         if (this.allocatedParkings.length > 0) {
             const sb = new StringBuilder();
-            sb.append("Slot No. Registration No.")
+            sb.append("Slot No.    Registration No.")
             this.allocatedParkings.forEach(car => {
                 sb.appendLine()
-                sb.append(`${car.slot}  ${car.registrationNumber}`)
+                sb.append(`${car.slot}           ${car.registrationNumber}`)
             });
 
             return sb.toString()

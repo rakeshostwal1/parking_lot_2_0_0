@@ -104,16 +104,16 @@ describe(`leave KA-01-HH-3141 4`, () => {
 describe(`status`, () => {
     it(`should show all car status in parking lot`, () => {
         const expectedSB = new StringBuilder();
-        expectedSB.append("Slot No. Registration No.")
-        expectedSB.appendLine("1  KA-01-HH-1234")
+        expectedSB.append("Slot No.    Registration No.")
+        expectedSB.appendLine("1           KA-01-HH-1234")
         expectedSB.append()
-        expectedSB.appendLine("2  KA-01-HH-9999")
+        expectedSB.appendLine("2           KA-01-HH-9999")
         expectedSB.append()
-        expectedSB.appendLine("3  KA-01-BB-0001")
+        expectedSB.appendLine("3           KA-01-BB-0001")
         expectedSB.append()
-        expectedSB.appendLine("4  KA-01-HH-7777")
+        expectedSB.appendLine("4           KA-01-HH-7777")
         expectedSB.append()
-        expectedSB.appendLine("5  KA-01-HH-2701")
+        expectedSB.appendLine("5           KA-01-HH-2701")
 
         const res = parkingLot.getStatus();
 
@@ -180,18 +180,18 @@ describe(`park KA-09-HH-0123`, () => {
 describe(`status`, () => {
     it(`should show all car status in parking lot`, () => {
         const expectedSB = new StringBuilder();
-        expectedSB.append("Slot No. Registration No.")
-        expectedSB.appendLine("1  KA-09-HH-0987")
+        expectedSB.append("Slot No.    Registration No.")
+        expectedSB.appendLine("1           KA-09-HH-0987")
         expectedSB.append()
-        expectedSB.appendLine("2  KA-01-HH-9999")
+        expectedSB.appendLine("2           KA-01-HH-9999")
         expectedSB.append()
-        expectedSB.appendLine("3  CA-09-IO-1111")
+        expectedSB.appendLine("3           CA-09-IO-1111")
         expectedSB.append()
-        expectedSB.appendLine("4  KA-01-HH-7777")
+        expectedSB.appendLine("4           KA-01-HH-7777")
         expectedSB.append()
-        expectedSB.appendLine("5  KA-01-HH-2701")
+        expectedSB.appendLine("5           KA-01-HH-2701")
         expectedSB.append()
-        expectedSB.appendLine("6  KA-01-P-333")
+        expectedSB.appendLine("6           KA-01-P-333")
 
         const res = parkingLot.getStatus();
         chai.expect(res).to.be.equal(expectedSB.toString());
