@@ -8,5 +8,8 @@
     "start": "node index.js"
   },
   "author": "Rakesh Ostwal",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "string-builder": "^0.1.8"
+  }
 }

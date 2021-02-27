@@ -1,33 +1,60 @@
-const commandReader = require('readline')
-const ParkingLot = require("./parkingLot");
+const fs = require('fs'),
+    readLine = require('readline');
 
-const main = async () => {
-    const commandLine = commandReader.createInterface({
+var commandLineInputs = process.argv; // processing command line inputs
+
+const ParkingLot = require('./parkingLot');
+const parkingLot = new ParkingLot();
+
+if (commandLineInputs[commandLineInputs.length - 1].endsWith('.txt')) {
+    fs.readFile(commandLineInputs[2], 'utf-8', function (err, data) {
+        if (err) {
+            console.log('Error in reading file');
+        }
+        var commands = data.split('\n');
+        for (var i = 0; i < commands.length; i++) {
+            executeUserCommand(commands[i]);
+        }
+
+        // return to console once all the inputs are processed
+        process.exit(1);
+    });
+} else {
+    console.log('Please enter command')
+
+    const commandLine = readLine.createInterface({
         input: process.stdin,
         output: process.stdout
     })
-    console.log('Please enter command')
-    const parkingLot = new ParkingLot();
 
     commandLine.on("line", async (inputRequest) => {
-        if (inputRequest) {
-            const input = inputRequest.toString()
-            const inputList = input.split(" ");
-            if (inputList && inputList.length > 0) {
-                const requstedCommand = inputList[0]
-                const inputValues = inputList.splice(1, inputList.length);
-                if (requstedCommand == 'create_parking_lot') {
-                    result = parkingLot.createParking(inputValues[0]).then(result  => {
-                        console.log(result)
-                    });
-                }
-            } else {
-                console.log('Please enter valid command')
-            }
-        } else {
-            console.log('Please enter command')
-        }
+        executeUserCommand(inputRequest)
     })
 }
 
-main()
+function executeUserCommand(inputRequest) {
+    if (inputRequest) {
+        const inputList = inputRequest.toString().split(" ");
+        if (inputList && inputList.length > 0) {
+            const requstedCommand = inputList[0]
+            const inputValues = inputList.splice(1, inputList.length);
+            var result = '';
+            if (requstedCommand == 'create_parking_lot') {
+                result = parkingLot.createParking(inputValues)
+            } else if (requstedCommand == 'park') {
+                var result = parkingLot.allocatedParking(inputValues);
+            } else if (requstedCommand == 'leave') {
+                var result = parkingLot.removeCar(inputValues);
+            } else if (requstedCommand == 'status') {
+                var result = parkingLot.getStatus();
+            } else {
+                console.log('Please enter valid command')
+            }
+            console.log(result)
+        } else {
+            console.log('Please enter valid command')
+        }
+    } else {
+        console.log('Please enter valid command')
+    }
+}
